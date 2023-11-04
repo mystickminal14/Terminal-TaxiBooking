@@ -1,5 +1,7 @@
-customerData = []
+
 import Dashboard
+import Manager
+customerData = []
 def register():
     firstName = input("Enter your first name: ")
     lastName = input("Enter your last name:")
@@ -8,10 +10,10 @@ def register():
     while True:
         try:
             age = int(input("Enter your age: "))
-            if 14 <= age <= 99:
+            if 18 <= age <= 99:
                 break
             else:
-                print("Only age between 14 and 99 can register.")
+                print("Only age between 18 and 99 can register.")
         except ValueError:
             print("Age must be a number.")
    
@@ -26,7 +28,7 @@ def register():
     # Email Address Validation
     while True:
         email = input("Enter your email address: ")
-        if "@" in email and "." in email :
+        if "@" in email and "." in email and "com" in email :
             break
         else:
             print("Please enter a valid email address.")
@@ -34,7 +36,7 @@ def register():
     # Password Validation
     while True:
         password = input("Enter your desired password: ")
-        if len(password) >= 9 :
+        if len(password) >= 9   :
             break
         else:
             print("Password must be greater than 8 characters")
@@ -57,8 +59,12 @@ def login():
     password = input("Enter your password: ")
     for data in customerData:
         if data['email'] == email and data['password'] == password:
-            print("Login Successful!")
+            print("Login Successfull!")
             Dashboard.dashboard(data)
+            return
+        elif email=="minal@ptc.com" and password == 'password':
+            print("Login Successfull!!")
+            Manager.managerDashboard(data)
             return
         else:
               print("Login Failed. Email or password is incorrect.")
