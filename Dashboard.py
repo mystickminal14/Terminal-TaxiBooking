@@ -32,9 +32,18 @@ def view():
      if sure =='1':
        if not booking:
             print("there are no data to be canceled")
+            detail=Home.customerData
+            dashboard(detail)
        else:
              booking.clear()
              print('your booking successfully canceled')
+             goto=input("Do you want to go to Dashboard:(Y/N) :")
+             if goto=='y' or goto=='Y':
+                    detail=Home.customerData
+                    dashboard(detail)
+             else:
+                detail=Home.customerData
+                dashboard(detail)
      else:
         detail=Home.customerData
         dashboard(detail)
