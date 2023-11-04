@@ -23,12 +23,18 @@ def bookingValidation():
       booking.append(book)
       return place,time ,day
       
-def view(place,time,day):
-     print(f"Travel Destination :{place}\n Time :{time} day :{day}")
-     print('you have following options :\n 1. Choose 1 for cancel\n 2.Choose 2 to go to dashboard')
-     sure=input("Do you want to view booking or go to dashboard. Type 1 for booking and 2 for dashboard :")
+def view():
+     if  not  booking:
+          print('There are no records to display !')
+     else:
+          print(f"Travel Destination :{booking['place']}\n Time :{booking['time']} day :{booking['day']}")
+     sure=input("Do you want to cancel or go to dashboard. Type 1 for booking and 2 for dashboard :")
      if sure =='1':
-        print('your booking successfully canceled')
+       if not booking:
+            print("there are no data to be canceled")
+       else:
+             booking.clear()
+             print('your booking successfully canceled')
      else:
         detail=Home.customerData
         dashboard(detail)
@@ -65,7 +71,7 @@ def makeBooking():
    
 
 def customerChoice(customerData):
-        print("You have following option to do in your dashboard\n 1. Click one to display your profile 2. Click 2 to make bookings 3. Click 3 to go back to login" )
+        print("You have following option to do in your dashboard\n 1. Click one to display your profile 2. Click 2 to make bookings 3. Click 3 to view booking 4. Click 4 to go back to login" )
         user_CHOICE=input("enter your choice :")
         if user_CHOICE=='1':
             print(f"Welcome  {customerData['firstName']} to your profile")
@@ -87,6 +93,8 @@ def customerChoice(customerData):
                     user_CHOICE=='1'
 
         elif user_CHOICE=='3' :
+           view()
+        elif user_CHOICE=='4' :
             Home.login()
         else:
             Home.login()
